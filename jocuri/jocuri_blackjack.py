@@ -177,14 +177,14 @@ def blackjack(self, alegere, user, miza):
                             vg.total_blackjack += 10
 
                         message = str(user) + ", ai tras un " + carte_2 + " și un " + carte_1 + \
-                                  ". Total = " + str(vg.total_blackjack) + \
+                                  ", ai în total " + str(vg.total_blackjack) + \
                                   ". Scrie rapid „!bj +” pentru a mai trage o carte sau „!bj stop” pentru a te opri" + \
                                   ". Prima carte a botului e " + str(carte_1_bot) + "."
 
                     c.privmsg(self.channel, message)
 
                     # Aici se pune timpul de așteptare pentru pedeapsă
-                    vg.pedeapsa_blackjack = time() + 30
+                    vg.pedeapsa_blackjack = time() + 40
                     vg.flag_start_blackjack = True
 
                     # Închidere baza de date
@@ -197,11 +197,11 @@ def blackjack(self, alegere, user, miza):
 
                     # Userul nu are 21
                     if vg.total_blackjack != 21:
-                        message = str(user) + ", ai ales as = " + alegere + ". Total = " + str(vg.total_blackjack) + \
+                        message = str(user) + ", ai ales as = " + alegere + ", ai în total " + str(vg.total_blackjack) + \
                                   ". Scrie rapid „!bj +” pentru a mai trage o carte sau „!bj stop” pentru a te opri."
 
                         # Aici se pune timpul de așteptare pentru pedeapsă
-                        vg.pedeapsa_blackjack = time() + 30
+                        vg.pedeapsa_blackjack = time() + 40
 
                     # Userul are 21
                     else:
@@ -218,7 +218,7 @@ def blackjack(self, alegere, user, miza):
                                 forma_miza = " de Vons"
                           
                             message = str(user) + ", ai tras un " + carte_1 + \
-                                      ". Total = " + str(vg.total_blackjack) + \
+                                      ", ai în total " + str(vg.total_blackjack) + \
                                       ". Ai câștigat pentru că botul a obținut " + str(vg.total_blackjack_bot) + \
                                       ". Ți-ai dublat miza de " + f'{numbers.format_number(vg.miza_blackjack, locale="ro_RO")}' + forma_miza + \
                                       ". Cărțile botului au fost: " + vg.carti_blackjack_bot_final + "."
@@ -245,7 +245,7 @@ def blackjack(self, alegere, user, miza):
                                 forma_miza = " de Vons"
 
                             message = str(user) + ", ai tras un " + carte_1 + \
-                                      ". Total = " + str(vg.total_blackjack) + \
+                                      ", ai în total " + str(vg.total_blackjack) + \
                                       ". S-a terminat egal deoarece și botul a obținut " + str(vg.total_blackjack_bot) + \
                                       ". Ti-ai recuperat miza de " + f'{numbers.format_number(vg.miza_blackjack, locale="ro_RO")}' + forma_miza + \
                                       ". Cărțile botului au fost: " + vg.carti_blackjack_bot_final + "."
@@ -309,7 +309,7 @@ def blackjack(self, alegere, user, miza):
                                     else:
                                         forma_miza = " de Vons"
                                   
-                                    message = str(user) + ", ai tras un " + carte_1 + " (=1). Total = " + str(vg.total_blackjack) + \
+                                    message = str(user) + ", ai tras un " + carte_1 + " (=1), ai în total " + str(vg.total_blackjack) + \
                                               ". Ai câștigat deoarece botul a obținut " + str(vg.total_blackjack_bot) + \
                                               ". Ți-ai dublat miza de " + f'{numbers.format_number(vg.miza_blackjack, locale="ro_RO")}' + forma_miza + \
                                               ". Cărțile botului au fost: " + vg.carti_blackjack_bot_final + "."
@@ -335,7 +335,7 @@ def blackjack(self, alegere, user, miza):
                                     else:
                                         forma_miza = " de Vons"
                                   
-                                    message = str(user) + ", ai tras un " + carte_1 + " (=1). Total = " + str(vg.total_blackjack) + \
+                                    message = str(user) + ", ai tras un " + carte_1 + " (=1), ai în total " + str(vg.total_blackjack) + \
                                               ". S-a terminat egal deoarece și botul a obținut " + str(vg.total_blackjack_bot) + \
                                               ". Ți-ai recuperat miza de " + f'{numbers.format_number(vg.miza_blackjack, locale="ro_RO")}' + forma_miza + \
                                               ". Cărțile botului au fost: " + vg.carti_blackjack_bot_final + "."
@@ -367,7 +367,7 @@ def blackjack(self, alegere, user, miza):
                         # Userul nu a ajuns la 21
                         if vg.total_blackjack < 21:
                             message = str(user) + ", ai tras un " + carte_1 + \
-                                      ". Total = " + str(vg.total_blackjack) + \
+                                      ", ai în total " + str(vg.total_blackjack) + \
                                       ". Scrie rapid „!bj +” pentru a mai trage o carte" + \
                                       " sau „!bj stop” pentru a te opri."
 
@@ -385,7 +385,7 @@ def blackjack(self, alegere, user, miza):
                                 else:
                                     forma_miza = " de Vons"
 
-                                message = str(user) + ", ai tras un " + carte_1 + ". Total = " + str(vg.total_blackjack) + \
+                                message = str(user) + ", ai tras un " + carte_1 + ", ai în total " + str(vg.total_blackjack) + \
                                           ". Ai câștigat deoarece botul a obținut " + str(vg.total_blackjack_bot) + \
                                           ". Ți-ai dublat miza de " + f'{numbers.format_number(vg.miza_blackjack, locale="ro_RO")}' + forma_miza + \
                                           ". Cărțile botului au fost: " + vg.carti_blackjack_bot_final + "."
@@ -412,7 +412,7 @@ def blackjack(self, alegere, user, miza):
                                     forma_miza = " de Vons"
                               
                                 message = str(user) + ", ai tras un " + carte_1 + \
-                                          ". Total = " + str(vg.total_blackjack) + \
+                                          ", ai în total " + str(vg.total_blackjack) + \
                                           ". S-a terminat egal deoarece și botul a obținut " + str(vg.total_blackjack_bot) + \
                                           ". Ți-ai recuperat miza de " + f'{numbers.format_number(vg.miza_blackjack, locale="ro_RO")}' + forma_miza + \
                                           ". Cărțile botului au fost: " + vg.carti_blackjack_bot_final + "."
@@ -441,7 +441,7 @@ def blackjack(self, alegere, user, miza):
                             else:
                                 forma_miza = " de Vons"
 
-                            message = str(user) + ", ai tras un " + carte_1 + ". Total = " + str(vg.total_blackjack) + \
+                            message = str(user) + ", ai tras un " + carte_1 + ", ai în total " + str(vg.total_blackjack) + \
                                       ". Ai pierdut deoarece ai depășit 21. Ți-ai pierdut miza de " + \
                                       f'{numbers.format_number(vg.miza_blackjack, locale="ro_RO")}' + forma_miza + "."
 
@@ -451,7 +451,7 @@ def blackjack(self, alegere, user, miza):
                     c.privmsg(self.channel, message)
 
                     # Aici se pune timpul de așteptare pentru pedeapsă
-                    vg.pedeapsa_blackjack = time() + 30
+                    vg.pedeapsa_blackjack = time() + 40
 
                     # Închidere baza de date
                     conn.close()
@@ -459,7 +459,7 @@ def blackjack(self, alegere, user, miza):
                 # Userul oprește partida
                 elif alegere == "stop" and vg.flag_start_blackjack and not vg.flag_as_blackjack:
                     # Cărți + total bot
-                    carti_total_bot(cărti)
+                    carti_total_bot(carti)
 
                     # Botul a obținut mai puțin decât userul sau a depășit 21
                     if vg.total_blackjack_bot < vg.total_blackjack or vg.total_blackjack_bot > 21:
@@ -533,7 +533,7 @@ def blackjack(self, alegere, user, miza):
                     c.privmsg(self.channel, message)
 
                     # Aici se pune timpul de așteptare pentru pedeapsă
-                    vg.pedeapsa_blackjack = time() + 30
+                    vg.pedeapsa_blackjack = time() + 40
 
                     # Închidere baza de date
                     conn.close()

@@ -43,7 +43,7 @@ def cuminte(self, user):
                 if temp < 0:
                     conn.close()
                     help_flag = False
-                    message = str(user) + ", nu mai încerca să abuzezi de acest bug pentru că nu mai funcționează WtfBruh"
+                    message = str(user) + ", nu mai încerca să abuzezi de acest bug deoarece nu mai funcționează WtfBruh"
                     c.privmsg(self.channel, message)
 
                 break
@@ -58,7 +58,7 @@ def cuminte(self, user):
             if int(nr_puncte) < 0:
                 conn.close()
                 help_flag = False
-                message = str(user) + ", nu mai încerca să abuzezi de acest bug pentru că nu mai funcționează WtfBruh"
+                message = str(user) + ", nu mai încerca să abuzezi de acest bug deoarece nu mai funcționează WtfBruh"
                 c.privmsg(self.channel, message)
 
             # Dacă nu s-au dat Vons cu +, userul primește numărul de Vons
