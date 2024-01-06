@@ -11,10 +11,10 @@ def get_env_variable(env_var_name):
             with open("config.txt", "r") as config_file:
                 for line in config_file:
                     if line.startswith(f"{env_var_name}="):
-                        value = line.strip().split("=")[1]
+                        value = line.strip().split("=")[1].strip('"\n')
                         break
         except FileNotFoundError:
-            print('Warning: {env_var_name} is not found in config.txt.')
+            print(f'Warning: {env_var_name} is not found in config.txt.')
 
     return value
 
