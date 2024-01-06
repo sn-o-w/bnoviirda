@@ -87,18 +87,20 @@ def grinch(self, user, sub):
                         vg.data.append(user)
 
                     if nr_puncte_furate == 1:
-                        message = str(user) + ", ai reușit să-i furi " + f'{numbers.format_number(nr_puncte_furate, locale="ro_RO")}' + " Von lui " + str(pleb) + " WideHardo"
+                        forma_puncte = " Von"
                     elif nr_puncte_furate == 0 or (nr_puncte_furate % 100 > 0 and nr_puncte_furate % 100 < 20):
-                        message = str(user) + ", ai reușit să-i furi " + f'{numbers.format_number(nr_puncte_furate, locale="ro_RO")}' + " Vons lui " + str(pleb) + " WideHardo"
+                        forma_puncte = " Vons"
                     else:
-                        message = str(user) + ", ai reușit să-i furi " + f'{numbers.format_number(nr_puncte_furate, locale="ro_RO")}' + " de Vons lui " + str(pleb) + " WideHardo"
+                        forma_puncte = " de Vons"
+
+                    message = str(user) + ", ai reușit să-i furi " + f'{numbers.format_number(nr_puncte_furate, locale="ro_RO")}' + forma_puncte + " lui " + str(pleb) + " WideHardo"
 
                 # Salvare și închidere baza de date
                 conn.commit()
                 conn.close()
 
                 # Aici se schimbă cooldownul pentru grinch
-                vg.timp_grinch = time() + 300
+                vg.timp_grinch = time() + 180 # era 300 înainte
 
                 c.privmsg(self.channel, message)
 
