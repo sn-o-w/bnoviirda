@@ -99,7 +99,7 @@ def grinch(self, user, sub):
                 conn.commit()
                 conn.close()
 
-                # Aici se schimbă cooldownul pentru grinch
+                # Aici se schimbă cooldownul pentru grinch, valoare exprimată în secunde
                 vg.timp_grinch = time() + 180 # era 300 înainte
 
                 c.privmsg(self.channel, message)

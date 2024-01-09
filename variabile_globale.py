@@ -3,10 +3,13 @@ import os
 from time import time
 from dotenv import load_dotenv
 
+load_dotenv()
+
 def get_env_variable(env_var_name):
     value = os.environ.get(env_var_name)
 
     if not value:
+        print(f'No variables defined in system environment or .env for {env_var_name}, checking config.txt.')
         try:
             with open("config.txt", "r") as config_file:
                 for line in config_file:

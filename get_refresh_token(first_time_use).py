@@ -1,7 +1,6 @@
 # Imports
 import sqlite3, os, requests
 import variabile_globale as vg
-from dotenv import load_dotenv
 
 # Localizare bază de date
 DATABASE = os.path.abspath("base.db")
