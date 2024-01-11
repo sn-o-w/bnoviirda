@@ -8,7 +8,8 @@ from time import time
 def comenzi(self, user, alt_user):
     c = self.connection
 
-    link = "https://prnt.sc/26ljlw3"
+    # Linkul vechi cu comenzi: https://prnt.sc/26ljlw3
+    link = "https://i.epvpimg.com/GEgqcab.png"
 
     # Comandă simplă
     if alt_user is None or alt_user[0] != '@':
@@ -24,8 +25,10 @@ def comenzi(self, user, alt_user):
 def ajutor(self, user, alt_user):
     c = self.connection
 
-    link_vons = "https://prnt.sc/1qbwjmv"
-    link_comenzi = "https://prnt.sc/26ljlw3"
+    # Linkul vechi cu Vons: https://prnt.sc/1qbwjmv
+    link_vons = "https://i.epvpimg.com/V9vSdab.png"
+    # Linkul vechi cu comenzi: https://prnt.sc/26ljlw3
+    link_comenzi = "https://i.epvpimg.com/GEgqcab.png"
 
     if user is not None:
         # Comandă simplă
@@ -61,5 +64,5 @@ def botplay(self):
 def new_user(self, user):
     c = self.connection
 
-    message = str(user) + ", bun venit la noi în chat! PogU"
+    message = str(user) + ", bun-venit la noi în chat! PogU"
     c.privmsg(self.channel, message)

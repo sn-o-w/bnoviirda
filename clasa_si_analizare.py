@@ -17,7 +17,7 @@ from comenzi_globale.comenzi_help import comenzi, ajutor, botplay, new_user
 from comenzi_mods.coinflip import mods_coinflip
 from comenzi_mods.categorie import mods_schimba_categoria
 from comenzi_mods.intrebari import intrebari
-from puncte import puncte_chat, puncte_user, mods_puncte, schimb_puncte
+from puncte import puncte_chat, puncte_user, mods_puncte, schimb_puncte, top_10_vons
 
 # Clasa TwitchBot (definirea acțiunilor botului)
 class TwitchBot(irc.bot.SingleServerIRCBot):
@@ -252,6 +252,10 @@ class TwitchBot(irc.bot.SingleServerIRCBot):
             elif cmd == "flower":
                user = tags["display-name"]
                flower(self, user)
+              
+            # Top 10 flower
+            elif cmd == "topflower":
+                top_10_flower(self)
 
             # Video random
             elif cmd == "video":
@@ -267,6 +271,10 @@ class TwitchBot(irc.bot.SingleServerIRCBot):
                 except:
                     alt_user = None
                 puncte_user(self, user, alt_user)
+
+            # Top 10 Vons
+            elif cmd == "topvons":
+                top_10_vons(self)
 
             # Schimbă Vons în gamble points de la StreamElements
             elif cmd == "schimb":
@@ -347,27 +355,23 @@ class TwitchBot(irc.bot.SingleServerIRCBot):
                     nr_puncte = None
                 mods_puncte(self, mod, user, nr_puncte)
 
-            # Top 10 flower
-            elif cmd == "topflower":
-                top_10_flower(self)
-
             # Minigame-uri on
             elif cmd == "on":
                 try:
-                    minijoc = e.arguments[0].split()
-                    minijoc = minijoc[1]
+                    minigame = e.arguments[0].split()
+                    minigame = minigame[1]
                 except:
-                    minijoc = None
-                on(self, mod, minijoc)
+                    minigame = None
+                on(self, mod, minigame)
 
             # Minigame-uri off
             elif cmd == "off" and vg.user_blackjack is None and vg.user_phf is None:
                 try:
-                    minijoc = e.arguments[0].split()
-                    minijoc = minijoc[1]
+                    minigame = e.arguments[0].split()
+                    minigame = minigame[1]
                 except:
-                    minijoc = None
-                off(self, mod, minijoc)
+                    minigame = None
+                off(self, mod, minigame)
 
             # Întrebări (comenzi)
             elif cmd in vg.intrebari:

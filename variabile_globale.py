@@ -9,7 +9,7 @@ def get_env_variable(env_var_name):
     value = os.environ.get(env_var_name)
 
     if not value:
-        print(f'No variables defined in system environment or .env for {env_var_name}, checking config.txt.')
+        print(f'Nicio variabilă definită în sistem sau în fișierul .env pentru {env_var_name}, se verifică config.txt.')
         try:
             with open("config.txt", "r") as config_file:
                 for line in config_file:
@@ -17,7 +17,7 @@ def get_env_variable(env_var_name):
                         value = line.strip().split("=")[1].strip('"\n')
                         break
         except FileNotFoundError:
-            print(f'Warning: {env_var_name} is not found in config.txt.')
+            print(f'Avertisment: {env_var_name} nu a fost găsit în config.txt.')
 
     return value
 

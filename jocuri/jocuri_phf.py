@@ -78,11 +78,11 @@ def phf(self, alegere, user, miza):
             if vg.flag_puncte_phf:
                 temp = 0
                 if vg.data == []:
-                    for row in cursor.execute('''SELECT username FROM AVP'''):
+                    for row in cursor.execute('''SELECT username FROM Vons'''):
                         vg.data.append(row[0])
 
                 if user in vg.data:
-                    for row in cursor.execute('''SELECT puncte FROM AVP WHERE username = ?''', (user,)):
+                    for row in cursor.execute('''SELECT puncte FROM Vons WHERE username = ?''', (user,)):
                         temp = row[0]
                         break
                 else:
@@ -129,7 +129,7 @@ def phf(self, alegere, user, miza):
             else:
                 # Miza este pariată
                 if vg.flag_puncte_phf:
-                    cursor.execute('''UPDATE AVP SET puncte = ? WHERE username = ?''',
+                    cursor.execute('''UPDATE Vons SET puncte = ? WHERE username = ?''',
                                    (vg.puncte_temp_phf - vg.miza_phf, user))
 
                     # Salvare baza de date
@@ -165,12 +165,12 @@ def phf(self, alegere, user, miza):
                     c.privmsg(self.channel, message)
 
                     # Acces la numărul de Vons al userului
-                    for row in cursor.execute('''SELECT puncte FROM AVP WHERE username = ?''', (user,)):
+                    for row in cursor.execute('''SELECT puncte FROM Vons WHERE username = ?''', (user,)):
                         vg.puncte_temp_phf = row[0]
                         break
 
                     # Userul își primește câștigul
-                    cursor.execute('''UPDATE AVP SET puncte = ? WHERE username = ?''',
+                    cursor.execute('''UPDATE Vons SET puncte = ? WHERE username = ?''',
                                    (vg.puncte_temp_phf + vg.miza_phf * 2, user))
 
                     # Salvare și închidere baza de date

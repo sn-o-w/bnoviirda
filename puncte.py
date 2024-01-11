@@ -17,7 +17,7 @@ def puncte_chat(self, chat):
 
     # Se extrag toți userii din baza de date dacă nu s-au extras deja
     if vg.data == []:
-        for row in cursor.execute('''SELECT username FROM AVP'''):
+        for row in cursor.execute('''SELECT username FROM Vons'''):
             vg.data.append(row[0])
 
     # Fiecare user din chat își primește punctele
@@ -26,18 +26,18 @@ def puncte_chat(self, chat):
         if user in vg.data:
 
             # Acces la numărul de Vons al userului
-            for row in cursor.execute('''SELECT puncte FROM AVP WHERE username = ?''', (user,)):
+            for row in cursor.execute('''SELECT puncte FROM Vons WHERE username = ?''', (user,)):
                 # Aici se schimbă câte puncte să primească chatul
                 temp = int(row[0]) + 100
                 break
 
             # Userul își primește punctele
-            cursor.execute('''UPDATE AVP SET puncte = ? WHERE username = ?''', (temp, user))
+            cursor.execute('''UPDATE Vons SET puncte = ? WHERE username = ?''', (temp, user))
 
         # Userul nu e în baza de date și e introdus acum
         else:
             # Aici se schimbă câte puncte să primească chatul
-            cursor.execute('''INSERT INTO AVP (username, puncte) VALUES (?, ?)''', (user, 100))
+            cursor.execute('''INSERT INTO Vons (username, puncte) VALUES (?, ?)''', (user, 100))
             vg.data.append(user)
 
     # Salvare și închidere baza de date
@@ -63,13 +63,13 @@ def puncte_user(self, user, alt_user):
 
         # Se extrag toți userii din baza de date dacă nu s-au extras deja
         if vg.data == []:
-            for row in cursor.execute('''SELECT username FROM AVP'''):
+            for row in cursor.execute('''SELECT username FROM Vons'''):
                 vg.data.append(row[0])
 
         # Userul este deja în baza de date
         if user in vg.data:
             # Acces la numărul de Vons al userului
-            for row in cursor.execute('''SELECT puncte FROM AVP WHERE username = ?''', (user,)):
+            for row in cursor.execute('''SELECT puncte FROM Vons WHERE username = ?''', (user,)):
                 temp = row[0]
                 break
 
@@ -97,13 +97,13 @@ def puncte_user(self, user, alt_user):
 
         # Se extrag toți userii din baza de date dacă nu s-au extras deja
         if vg.data == []:
-            for row in cursor.execute('''SELECT username FROM AVP'''):
+            for row in cursor.execute('''SELECT username FROM Vons'''):
                 vg.data.append(row[0])
 
         # Userul este deja în baza de date
         if alt_user in vg.data:
             # Acces la numărul de Vons al userului
-            for row in cursor.execute('''SELECT puncte FROM AVP WHERE username = ?''', (alt_user,)):
+            for row in cursor.execute('''SELECT puncte FROM Vons WHERE username = ?''', (alt_user,)):
                 temp = row[0]
                 break
 
@@ -140,7 +140,7 @@ def mods_puncte(self, mod, user, nr_puncte):
 
         # Se extrag toți userii din baza de date dacă nu s-au extras deja
         if vg.data == []:
-            for row in cursor.execute('''SELECT username FROM AVP'''):
+            for row in cursor.execute('''SELECT username FROM Vons'''):
                 vg.data.append(row[0])
 
         # Când se dau Vons unui singur user
@@ -149,7 +149,7 @@ def mods_puncte(self, mod, user, nr_puncte):
             # Userul este deja în baza de date
             if user in vg.data:
                 # Acces la numărul de Vons al userului
-                for row in cursor.execute('''SELECT puncte FROM AVP WHERE username = ?''', (user,)):
+                for row in cursor.execute('''SELECT puncte FROM Vons WHERE username = ?''', (user,)):
                     temp = int(row[0]) + nr_puncte
 
                     # Dacă s-au dat Vons cu - și userul ajunge la un număr negativ, se salvează că are 0 Vons
@@ -159,7 +159,7 @@ def mods_puncte(self, mod, user, nr_puncte):
                     break
 
                 # Userul își primește punctele
-                cursor.execute('''UPDATE AVP SET puncte = ? WHERE username = ?''', (temp, user))
+                cursor.execute('''UPDATE Vons SET puncte = ? WHERE username = ?''', (temp, user))
 
             # Userul nu e în baza de date și e introdus acum
             else:
@@ -172,7 +172,7 @@ def mods_puncte(self, mod, user, nr_puncte):
                     nr_puncte_temp = int(nr_puncte)
 
                 # Userul își primește punctele
-                cursor.execute('''INSERT INTO AVP (username, puncte) VALUES (?, ?)''', (user, nr_puncte_temp))
+                cursor.execute('''INSERT INTO Vons (username, puncte) VALUES (?, ?)''', (user, nr_puncte_temp))
                 temp = nr_puncte_temp
                 vg.data.append(user)
 
@@ -198,7 +198,7 @@ def mods_puncte(self, mod, user, nr_puncte):
                 # Userul este deja în baza de date
                 if chatter in vg.data:
                     # Acces la numărul de Vons al userului
-                    for row in cursor.execute('''SELECT puncte FROM AVP WHERE username = ?''', (chatter,)):
+                    for row in cursor.execute('''SELECT puncte FROM Vons WHERE username = ?''', (chatter,)):
                         temp = int(row[0]) + int(nr_puncte)
 
                         # Dacă s-au dat Vons cu - și userul ajunge la un număr negativ, se salvează că are 0 Vons
@@ -208,7 +208,7 @@ def mods_puncte(self, mod, user, nr_puncte):
                         break
 
                     # Userul își primește punctele
-                    cursor.execute('''UPDATE AVP SET puncte = ? WHERE username = ?''', (temp, chatter))
+                    cursor.execute('''UPDATE Vons SET puncte = ? WHERE username = ?''', (temp, chatter))
 
                 # Userul nu e în baza de date și e introdus acum
                 else:
@@ -221,7 +221,7 @@ def mods_puncte(self, mod, user, nr_puncte):
                         nr_puncte_temp = int(nr_puncte)
 
                     # Userul își primește punctele
-                    cursor.execute('''INSERT INTO AVP (username, puncte) VALUES (?, ?)''', (chatter, nr_puncte_temp))
+                    cursor.execute('''INSERT INTO Vons (username, puncte) VALUES (?, ?)''', (chatter, nr_puncte_temp))
                     vg.data.append(chatter)
 
             # Salvare și închidere baza de date
@@ -245,7 +245,7 @@ def mods_puncte(self, mod, user, nr_puncte):
 
     # Comandă introdusă greșit
     else:
-        message = str(mod) + ", ai introdus comanda greșit. Trebuia: !puncte <user> <nr-puncte (întreg)> 3Head Clap"
+        message = str(mod) + ", ai introdus comanda greșit. Trebuia: !puncte <user> <nr-întreg-de-puncte> 3Head Clap"
         c.privmsg(self.channel, message)
 
 
@@ -285,13 +285,13 @@ def schimb_puncte(self, user, puncte):
 
         # Se extrag toți userii din baza de date dacă nu s-au extras deja
         if vg.data == []:
-            for row in cursor.execute('''SELECT username FROM AVP'''):
+            for row in cursor.execute('''SELECT username FROM Vons'''):
                 vg.data.append(row[0])
 
         # Userul este deja în baza de date
         if user in vg.data:
             # Acces la numărul de Vons al userului
-            for row in cursor.execute('''SELECT puncte FROM AVP WHERE username = ?''', (user,)):
+            for row in cursor.execute('''SELECT puncte FROM Vons WHERE username = ?''', (user,)):
                 temp = row[0]
                 break
 
@@ -321,7 +321,7 @@ def schimb_puncte(self, user, puncte):
         # Userul vrea să schimbe un număr de Vons pe care îl deține
         else:
             # Se retrag Vons
-            cursor.execute('''UPDATE AVP SET puncte = ? WHERE username = ?''',(temp - puncte, user))
+            cursor.execute('''UPDATE Vons SET puncte = ? WHERE username = ?''',(temp - puncte, user))
 
             if puncte == 1:
                 forma_puncte = " Von"
@@ -342,3 +342,19 @@ def schimb_puncte(self, user, puncte):
             # Salvare și închidere baza de date
             conn.commit()
             conn.close()
+
+# Top 10 Vons
+def top_10_vons(self):
+    c = self.connection
+
+    # Acces la baza de date
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+
+    top_10 = []
+    for row in cursor.execute('''SELECT * FROM Vons ORDER BY puncte DESC LIMIT 10'''):
+        top_10.append(row)
+
+    message = '; '.join([f'{i + 1}. {top_10[i][0]} ({numbers.format_number(top_10[i][1], locale="ro_RO")})' for i in range(len(top_10))])
+
+    c.privmsg(self.channel, message)

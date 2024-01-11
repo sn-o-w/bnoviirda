@@ -14,7 +14,7 @@ def ruleta(self, jucator, sub):
     c = self.connection
 
     # Userul e sub
-    if sub == 1:
+    if sub:
 
         # Comanda când nu e cooldown
         if time() >= vg.timp_ruleta:
@@ -39,24 +39,24 @@ def ruleta(self, jucator, sub):
 
                 # Se extrag toți userii din baza de date dacă nu s-au extras deja
                 if vg.data == []:
-                    for row in cursor.execute('''SELECT username FROM AVP'''):
+                    for row in cursor.execute('''SELECT username FROM Vons'''):
                         vg.data.append(row[0])
 
                 # Se verifică dacă câștigătorul e în baza de date
                 # Câștigătorul e deja în baza de date
                 if jucator in vg.data:
                     # Acces la numărul de Vons al câștigătorului
-                    for row in cursor.execute('''SELECT puncte FROM AVP WHERE username = ?''', (jucator,)):
+                    for row in cursor.execute('''SELECT puncte FROM Vons WHERE username = ?''', (jucator,)):
                         temp = int(row[0]) + vg.premiu_ruleta
                         break
 
                     # Câștigătorul își primește premiul
-                    cursor.execute('''UPDATE AVP SET puncte = ? WHERE username = ?''', (temp, jucator))
+                    cursor.execute('''UPDATE Vons SET puncte = ? WHERE username = ?''', (temp, jucator))
 
                 # Câștigătorul nu e în baza de date și e introdus acum
                 else:
                     # Câștigătorul își primește premiul
-                    cursor.execute('''INSERT INTO AVP (username, puncte) VALUES (?, ?)''', (jucator, int(vg.premiu_ruleta)))
+                    cursor.execute('''INSERT INTO Vons (username, puncte) VALUES (?, ?)''', (jucator, int(vg.premiu_ruleta)))
                     vg.data.append(jucator)
 
                 # Premiul se resetează la valoarea inițială

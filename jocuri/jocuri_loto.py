@@ -69,26 +69,26 @@ def loto_castigat(self, jucator):
 
     # Se extrag toți userii din baza de date dacă nu s-au extras deja
     if vg.data == []:
-        for row in cursor.execute('''SELECT username FROM AVP'''):
+        for row in cursor.execute('''SELECT username FROM Vons'''):
             vg.data.append(row[0])
 
     # Se verifică dacă câștigătorul e în baza de date
     # Câștigătorul e deja în baza de date
     if jucator in vg.data:
         # Acces la numărul de Vons al câștigătorulului
-        for row in cursor.execute('''SELECT puncte FROM AVP WHERE username = ?''',
+        for row in cursor.execute('''SELECT puncte FROM Vons WHERE username = ?''',
                                   (jucator,)):
             temp = int(row[0]) + vg.premiu_loto
             break
 
         # Câștigătorul își primește premiul
-        cursor.execute('''UPDATE AVP SET puncte = ? WHERE username = ?''',
+        cursor.execute('''UPDATE Vons SET puncte = ? WHERE username = ?''',
                        (temp, jucator))
 
     # Câștigătorul nu e în baza de date și e introdus acum
     else:
         # Câștigătorul își primește premiul
-        cursor.execute('''INSERT INTO AVP (username, puncte) VALUES (?, ?)''',
+        cursor.execute('''INSERT INTO Vons (username, puncte) VALUES (?, ?)''',
                        (jucator, int(vg.premiu_lot)))
         vg.data.append(jucator)
 

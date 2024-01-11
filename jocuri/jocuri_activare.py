@@ -25,43 +25,43 @@ def off_auto(self):
     c.privmsg(self.channel, message)
 
 # Minigame-uri on
-def on(self, mod, minijoc):
+def on(self, mod, minigame):
     c = self.connection
 
     # Comandă fără minigame
-    if minijoc is None:
+    if minigame is None:
         message = str(mod) + ", nu ai ales ce minigame vrei să pornești. Ex.: !on bj"
 
     # Comandă + minigame
     else:
         # Blackjack când e off
-        if minijoc == "bj" and not vg.on_bj:
+        if minigame == "bj" and not vg.on_bj:
             vg.on_bj = True
             vg.timp_blackjack = time()
             message = str(mod) + ", ai pornit blackjackul."
 
         # Blackjack cand e on
-        elif minijoc == "bj":
+        elif minigame == "bj":
             message = str(mod) + ", blackjackul este deja pornit."
 
         # Piatră, hârtie, foarfecă când e off
-        elif minijoc == "phf" and not vg.on_phf:
+        elif minigame == "phf" and not vg.on_phf:
             vg.on_phf = True
             vg.timp_phf = time()
             message = str(mod) + ", ai pornit jocul de piatră, hârtie, foarfecă."
 
         # Piatră, hârtie, foarfecă când e on
-        elif minijoc == "phf":
+        elif minigame == "phf":
             message = str(mod) + ", jocul de piatră, hârtie, foarfecă este deja pornit."
 
         # Ruleta când e off
-        elif minijoc == "ruleta" and not vg.on_ruleta:
+        elif minigame == "ruleta" and not vg.on_ruleta:
             vg.on_ruleta = True
             vg.timp_ruleta = time()
             message = str(mod) + ", ai pornit ruleta."
 
         # Ruleta când e on
-        elif minijoc == "ruleta":
+        elif minigame == "ruleta":
             message = str(mod) + ", ruleta este deja pornită."
 
         # Minigame ce nu există
@@ -71,40 +71,40 @@ def on(self, mod, minijoc):
     c.privmsg(self.channel, message)
 
 # Minigame-uri off
-def off(self, mod, minijoc):
+def off(self, mod, minigame):
     c = self.connection
 
     # Comandă fără minigame
-    if minijoc is None:
+    if minigame is None:
         message = str(mod) + ", nu ai ales ce minigame vrei să oprești. Ex.: !off bj"
 
     # Comandă + minigame
     else:
         # Blackjack când e on
-        if minijoc == "bj" and vg.on_bj:
+        if minigame == "bj" and vg.on_bj:
             vg.on_bj = False
             message = str(mod) + ", ai oprit blackjackul."
 
         # Blackjack când e off
-        elif minijoc == "bj":
+        elif minigame == "bj":
             message = str(mod) + ", blackjackul este deja oprit."
 
         # Piatră, hârtie, foarfecă când e on
-        elif minijoc == "phf" and vg.on_phf:
+        elif minigame == "phf" and vg.on_phf:
             vg.on_phf = False
             message = str(mod) + ", ai oprit jocul de piatră, hârtie, foarfecă."
 
         # Piatră, hârtie, foarfecă când e off
-        elif minijoc == "phf":
+        elif minigame == "phf":
             message = str(mod) + ", jocul de piatră, hârtie, foarfecă este deja oprit."
 
         # Ruleta când e on
-        elif minijoc == "ruleta" and vg.on_ruleta:
+        elif minigame == "ruleta" and vg.on_ruleta:
             vg.on_ruleta = False
             message = str(mod) + ", ai oprit ruleta."
 
         # Ruleta când e off
-        elif minijoc == "ruleta":
+        elif minigame == "ruleta":
             message = str(mod) + ", ruleta este deja oprită."
 
         # Minigame ce nu există

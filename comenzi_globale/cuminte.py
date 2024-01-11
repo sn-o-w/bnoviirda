@@ -30,13 +30,13 @@ def cuminte(self, user):
 
         # Se extrag toți userii din baza de date dacă nu s-au extras deja
         if vg.data == []:
-            for row in cursor.execute('''SELECT username FROM AVP'''):
+            for row in cursor.execute('''SELECT username FROM Vons'''):
                 vg.data.append(row[0])
 
         # Userul este deja în baza de date
         if user in vg.data:
             # Acces la numărul de Vons al userului
-            for row in cursor.execute('''SELECT puncte FROM AVP WHERE username = ?''', (user,)):
+            for row in cursor.execute('''SELECT puncte FROM Vons WHERE username = ?''', (user,)):
                 temp = int(row[0]) + nr_puncte
 
                 # Dacă s-au dat Vons cu - și userul ajunge la un număr negativ, se anulează partida
@@ -50,7 +50,7 @@ def cuminte(self, user):
 
             if help_flag:
                 # Userul își primeste punctele
-                cursor.execute('''UPDATE AVP SET puncte = ? WHERE username = ?''', (temp, user))
+                cursor.execute('''UPDATE Vons SET puncte = ? WHERE username = ?''', (temp, user))
 
         # Userul nu e în baza de date și e introdus acum
         else:
@@ -67,7 +67,7 @@ def cuminte(self, user):
 
             if help_flag:
                 # Userul își primește punctele
-                cursor.execute('''INSERT INTO AVP (username, puncte) VALUES (?, ?)''', (user, nr_puncte_temp))
+                cursor.execute('''INSERT INTO Vons (username, puncte) VALUES (?, ?)''', (user, nr_puncte_temp))
                 temp = nr_puncte_temp
                 vg.data.append(user)
 

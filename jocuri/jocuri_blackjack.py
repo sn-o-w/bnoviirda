@@ -68,11 +68,11 @@ def blackjack(self, alegere, user, miza):
             if vg.flag_puncte_blackjack:
                 temp = 0
                 if vg.data == []:
-                    for row in cursor.execute('''SELECT username FROM AVP'''):
+                    for row in cursor.execute('''SELECT username FROM Vons'''):
                         vg.data.append(row[0])
 
                 if user in vg.data:
-                    for row in cursor.execute('''SELECT puncte FROM AVP WHERE username = ?''', (user,)):
+                    for row in cursor.execute('''SELECT puncte FROM Vons WHERE username = ?''', (user,)):
                         temp = row[0]
                         break
                 else:
@@ -120,7 +120,7 @@ def blackjack(self, alegere, user, miza):
             else:
                 # Miza este pariată
                 if vg.flag_puncte_blackjack:
-                    cursor.execute('''UPDATE AVP SET puncte = ? WHERE username = ?''',
+                    cursor.execute('''UPDATE Vons SET puncte = ? WHERE username = ?''',
                                    (vg.puncte_temp_blackjack - vg.miza_blackjack, user))
 
                     # Salvare baza de date
@@ -224,12 +224,12 @@ def blackjack(self, alegere, user, miza):
                                       ". Cărțile botului au fost: " + vg.carti_blackjack_bot_final + "."
 
                             # Acces la numărul de Vons al userului
-                            for row in cursor.execute('''SELECT puncte FROM AVP WHERE username = ?''', (user,)):
+                            for row in cursor.execute('''SELECT puncte FROM Vons WHERE username = ?''', (user,)):
                                 vg.puncte_temp_blackjack = row[0]
                                 break
 
                             # Userul își primește câștigul
-                            cursor.execute('''UPDATE AVP SET puncte = ? WHERE username = ?''',
+                            cursor.execute('''UPDATE Vons SET puncte = ? WHERE username = ?''',
                                            (vg.puncte_temp_blackjack + vg.miza_blackjack * 2, user))
 
                             # Salvare baza de date
@@ -251,12 +251,12 @@ def blackjack(self, alegere, user, miza):
                                       ". Cărțile botului au fost: " + vg.carti_blackjack_bot_final + "."
 
                             # Acces la numărul de Vons al userului
-                            for row in cursor.execute('''SELECT puncte FROM AVP WHERE username = ?''', (user,)):
+                            for row in cursor.execute('''SELECT puncte FROM Vons WHERE username = ?''', (user,)):
                                 vg.puncte_temp_blackjack = row[0]
                                 break
 
                             # Userul își reprimește miza
-                            cursor.execute('''UPDATE AVP SET puncte = ? WHERE username = ?''',
+                            cursor.execute('''UPDATE Vons SET puncte = ? WHERE username = ?''',
                                            (vg.puncte_temp_blackjack + vg.miza_blackjack, user))
 
                             # Salvare baza de date
@@ -291,7 +291,7 @@ def blackjack(self, alegere, user, miza):
                             # Userul nu a ajuns la 21
                             if vg.total_blackjack != 21:
                                 message = str(user) + ", ai tras un " + carte_1 + \
-                                      " (=1). Total = " + str(vg.total_blackjack) + \
+                                      " (=1), ai în total " + str(vg.total_blackjack) + \
                                       ". Scrie rapid „!bj +” pentru a mai trage o carte " + \
                                       "sau „!bj stop” pentru a te opri."
 
@@ -315,12 +315,12 @@ def blackjack(self, alegere, user, miza):
                                               ". Cărțile botului au fost: " + vg.carti_blackjack_bot_final + "."
 
                                     # Acces la numărul de Vons al userului
-                                    for row in cursor.execute('''SELECT puncte FROM AVP WHERE username = ?''', (user,)):
+                                    for row in cursor.execute('''SELECT puncte FROM Vons WHERE username = ?''', (user,)):
                                         vg.puncte_temp_blackjack = row[0]
                                         break
 
                                     # Userul își primește câștigul
-                                    cursor.execute('''UPDATE AVP SET puncte = ? WHERE username = ?''',
+                                    cursor.execute('''UPDATE Vons SET puncte = ? WHERE username = ?''',
                                                    (vg.puncte_temp_blackjack + vg.miza_blackjack * 2, user))
 
                                     # Salvare baza de date
@@ -341,12 +341,12 @@ def blackjack(self, alegere, user, miza):
                                               ". Cărțile botului au fost: " + vg.carti_blackjack_bot_final + "."
 
                                     # Acces la numărul de Vons al userului
-                                    for row in cursor.execute('''SELECT puncte FROM AVP WHERE username = ?''', (user,)):
+                                    for row in cursor.execute('''SELECT puncte FROM Vons WHERE username = ?''', (user,)):
                                         vg.puncte_temp_blackjack = row[0]
                                         break
 
                                     # Userul își reprimește miza
-                                    cursor.execute('''UPDATE AVP SET puncte = ? WHERE username = ?''',
+                                    cursor.execute('''UPDATE Vons SET puncte = ? WHERE username = ?''',
                                                    (vg.puncte_temp_blackjack + vg.miza_blackjack, user))
 
                                     # Salvare baza de date
@@ -391,12 +391,12 @@ def blackjack(self, alegere, user, miza):
                                           ". Cărțile botului au fost: " + vg.carti_blackjack_bot_final + "."
 
                                 # Acces la numărul de Vons al userului
-                                for row in cursor.execute('''SELECT puncte FROM AVP WHERE username = ?''', (user,)):
+                                for row in cursor.execute('''SELECT puncte FROM Vons WHERE username = ?''', (user,)):
                                     vg.puncte_temp_blackjack = row[0]
                                     break
 
                                 # Userul își primește câștigul
-                                cursor.execute('''UPDATE AVP SET puncte = ? WHERE username = ?''',
+                                cursor.execute('''UPDATE Vons SET puncte = ? WHERE username = ?''',
                                                (vg.puncte_temp_blackjack + vg.miza_blackjack * 2, user))
 
                                 # Salvare baza de date
@@ -418,12 +418,12 @@ def blackjack(self, alegere, user, miza):
                                           ". Cărțile botului au fost: " + vg.carti_blackjack_bot_final + "."
 
                                 # Acces la numărul de Vons al userului
-                                for row in cursor.execute('''SELECT puncte FROM AVP WHERE username = ?''', (user,)):
+                                for row in cursor.execute('''SELECT puncte FROM Vons WHERE username = ?''', (user,)):
                                     vg.puncte_temp_blackjack = row[0]
                                     break
 
                                 # Userul își reprimește miza
-                                cursor.execute('''UPDATE AVP SET puncte = ? WHERE username = ?''',
+                                cursor.execute('''UPDATE Vons SET puncte = ? WHERE username = ?''',
                                                (vg.puncte_temp_blackjack + vg.miza_blackjack, user))
 
                                 # Salvare baza de date
@@ -476,12 +476,12 @@ def blackjack(self, alegere, user, miza):
                                   ". Cărțile botului au fost: " + vg.carti_blackjack_bot_final + "."
 
                         # Acces la numărul de Vons al userului
-                        for row in cursor.execute('''SELECT puncte FROM AVP WHERE username = ?''', (user,)):
+                        for row in cursor.execute('''SELECT puncte FROM Vons WHERE username = ?''', (user,)):
                             vg.puncte_temp_blackjack = row[0]
                             break
 
                         # Userul își primește câștigul
-                        cursor.execute('''UPDATE AVP SET puncte = ? WHERE username = ?''',
+                        cursor.execute('''UPDATE Vons SET puncte = ? WHERE username = ?''',
                                        (vg.puncte_temp_blackjack + vg.miza_blackjack * 2, user))
 
                         # Salvare baza de date
@@ -502,12 +502,12 @@ def blackjack(self, alegere, user, miza):
                                   ". Cărțile botului au fost: " + vg.carti_blackjack_bot_final + "."
 
                         # Acces la numărul de Vons al userului
-                        for row in cursor.execute('''SELECT puncte FROM AVP WHERE username = ?''', (user,)):
+                        for row in cursor.execute('''SELECT puncte FROM Vons WHERE username = ?''', (user,)):
                             vg.puncte_temp_blackjack = row[0]
                             break
 
                         # Userul își reprimește miza
-                        cursor.execute('''UPDATE AVP SET puncte = ? WHERE username = ?''',
+                        cursor.execute('''UPDATE Vons SET puncte = ? WHERE username = ?''',
                                        (vg.puncte_temp_blackjack + vg.miza_blackjack, user))
 
                         # Salvare baza de date

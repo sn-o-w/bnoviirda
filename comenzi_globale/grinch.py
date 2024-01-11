@@ -17,7 +17,7 @@ def grinch(self, user, sub):
     if len(vg.all_plebs) > 0:
 
         # Userul e sub
-        if sub == 1:
+        if sub:
 
             # Comanda când nu e cooldown
             if time() >= vg.timp_grinch:
@@ -33,13 +33,13 @@ def grinch(self, user, sub):
 
                 # Se extrag toți userii din baza de date dacă nu s-au extras deja
                 if vg.data == []:
-                    for row in cursor.execute('''SELECT username FROM AVP'''):
+                    for row in cursor.execute('''SELECT username FROM Vons'''):
                         vg.data.append(row[0])
 
                 # Plebul este deja în baza de date
                 if pleb in vg.data:
                     # Acces la numărul de Vons al plebului
-                    for row in cursor.execute('''SELECT puncte FROM AVP WHERE username = ?''', (pleb,)):
+                    for row in cursor.execute('''SELECT puncte FROM Vons WHERE username = ?''', (pleb,)):
                         if int(row[0]) < nr_puncte:
                             nr_puncte_furate = int(row[0])
                         else:
@@ -54,13 +54,13 @@ def grinch(self, user, sub):
                         break
 
                     # Plebul își pierde punctele
-                    cursor.execute('''UPDATE AVP SET puncte = ? WHERE username = ?''', (temp, pleb))
+                    cursor.execute('''UPDATE Vons SET puncte = ? WHERE username = ?''', (temp, pleb))
 
                 # Plebul nu e în baza de date și e introdus acum
                 else:
 
                     # Punctele plebului sunt setate la 0
-                    cursor.execute('''INSERT INTO AVP (username, puncte) VALUES (?, ?)''', (pleb, 0))
+                    cursor.execute('''INSERT INTO Vons (username, puncte) VALUES (?, ?)''', (pleb, 0))
                     nr_puncte_furate = 0
                     vg.data.append(pleb)
 
@@ -73,17 +73,17 @@ def grinch(self, user, sub):
                     # Userul este deja în baza de date
                     if user in vg.data:
                         # Acces la numărul de Vons al userului
-                        for row in cursor.execute('''SELECT puncte FROM AVP WHERE username = ?''', (user,)):
+                        for row in cursor.execute('''SELECT puncte FROM Vons WHERE username = ?''', (user,)):
                             temp = int(row[0]) + nr_puncte_furate
                             break
 
                         # Userul își primește punctele
-                        cursor.execute('''UPDATE AVP SET puncte = ? WHERE username = ?''', (temp, user))
+                        cursor.execute('''UPDATE Vons SET puncte = ? WHERE username = ?''', (temp, user))
 
                     # Userul nu e în baza de date și e introdus acum
                     else:
                         # Userul își primește punctele
-                        cursor.execute('''INSERT INTO AVP (username, puncte) VALUES (?, ?)''', (user, nr_puncte_furate))
+                        cursor.execute('''INSERT INTO Vons (username, puncte) VALUES (?, ?)''', (user, nr_puncte_furate))
                         vg.data.append(user)
 
                     if nr_puncte_furate == 1:

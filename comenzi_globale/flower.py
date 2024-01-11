@@ -73,9 +73,9 @@ def flower(self, user):
 
         c.privmsg(self.channel, cooldown(timp_ramas, user, completare))
 
-    # Insuficienți useri pe chat cărora să le dai floricele
+    # Niciun user pe chat căruia să îi dai floricele
     else:
-        message = str(user) + ", nu există suficienți useri pe chat cărora să le dai floricele Sadge"
+        message = str(user) + ", nu există vreun user pe chat căruia să-i dai floricele Sadge"
         c.privmsg(self.channel, message)
 
 # Top 10 flower
@@ -90,7 +90,6 @@ def top_10_flower(self):
     for row in cursor.execute('''SELECT * FROM Flowers ORDER BY flori DESC LIMIT 10'''):
         top_10.append(row)
 
-    #message = str(i+1) + ". " + str(top_10[i][0]) + " cu " + str(top_10[i][1]) + " DankFlower"
-    message = '; '.join([f'{i + 1}. {top_10[i][0]} ({top_10[i][1]})' for i in range(len(top_10))])
+    message = '; '.join([f'{i + 1}. {top_10[i][0]} ({numbers.format_number(top_10[i][1], locale="ro_RO")})' for i in range(len(top_10))])
 
     c.privmsg(self.channel, message)
