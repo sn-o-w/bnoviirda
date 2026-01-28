@@ -79,24 +79,17 @@ def cuminte(self, user):
             # Aici se schimbă cooldownul pentru comandă
             vg.timp_cuminte = time() + 60
 
+            if nr_puncte == 1:
+                forma_puncte = " Von"
+            elif nr_puncte == 0 or (nr_puncte % 100 > 0 and nr_puncte % 100 < 20):
+                forma_puncte = " Vons"
+            else:
+                forma_puncte = " de Vons"
 
             if procent >= 70:
-                if nr_puncte == 1:
-                    forma_puncte = " Von"
-                elif nr_puncte == 0 or (nr_puncte % 100 > 0 and nr_puncte % 100 < 20):
-                    forma_puncte = " Vons"
-                else:
-                    forma_puncte = " de Vons"
-
                 message = str(user) + ", ai fost cuminte în proporție de " + str(procent) + "%. Ai primit " + f'{numbers.format_number(nr_puncte, locale="ro_RO")}' + forma_puncte + ". În prezent ai în total " + f'{numbers.format_number(temp, locale="ro_RO")}' + "."
             else:
                 nr_puncte = nr_puncte * -1
-                if nr_puncte == 1:
-                    forma_puncte = " Von"
-                elif nr_puncte == 0 or (nr_puncte % 100 > 0 and nr_puncte % 100 < 20):
-                    forma_puncte = " Vons"
-                else:
-                    forma_puncte = " de Vons"
                 
                 message = str(user) + ", ai fost cuminte în proporție de " + str(procent) + "%. Ai pierdut " + f'{numbers.format_number(nr_puncte, locale="ro_RO")}' + forma_puncte + ". În prezent ai în total " + f'{numbers.format_number(temp, locale="ro_RO")}' + "."
 

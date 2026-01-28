@@ -1,6 +1,7 @@
 babel
 bottle
-irc
 python-dotenv
 pytz
 requests
+schedule
+websockets

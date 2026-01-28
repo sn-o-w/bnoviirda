@@ -69,5 +69,15 @@ def intrebari(self, cmd, nume):
         # Comandă fără mention
         else:
             message = "Sunt zodia leu, este și în descriere, plus alte informații despre mine adriiv1Cute"
+            
+    # Ce job are
+    elif cmd == "job":
+        # Comandă + mention
+        if nume is not None:
+            message = str(nume) + ", lucrez într-o agenție de Marketing și Management (GG Industry) ca și Project Manager CatCozy"
+
+        # Comandă fără mention
+        else:
+            message = "Lucrez într-o agenție de Marketing și Management (GG Industry) ca și Project Manager CatCozy"
 
     c.privmsg(self.channel, message)

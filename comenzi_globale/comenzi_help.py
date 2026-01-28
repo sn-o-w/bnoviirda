@@ -4,31 +4,26 @@ sys.path.append("..")
 import variabile_globale as vg
 from time import time
 
+link_vons = "https://i.epvpimg.com/divaeab.png"
+link_comenzi = "https://i.epvpimg.com/VYBzbab.png"
+
 # Comenzi (help)
 def comenzi(self, user, alt_user):
     c = self.connection
 
-    # Linkul vechi cu comenzi: https://prnt.sc/26ljlw3
-    link = "https://i.epvpimg.com/GEgqcab.png"
-
     # Comandă simplă
     if alt_user is None or alt_user[0] != '@':
-        message = str(user) + ", aici ai toate comenzile botului: " + link
+        message = str(user) + ", aici ai toate comenzile botului: " + link_comenzi
 
     # Comandă + mention
     else:
-        message = str(alt_user) + ", aici ai toate comenzile botului: " + link
+        message = str(alt_user) + ", aici ai toate comenzile botului: " + link_comenzi
 
     c.privmsg(self.channel, message)
 
 # Ajutor Vons
 def ajutor(self, user, alt_user):
     c = self.connection
-
-    # Linkul vechi cu Vons: https://prnt.sc/1qbwjmv
-    link_vons = "https://i.epvpimg.com/V9vSdab.png"
-    # Linkul vechi cu comenzi: https://prnt.sc/26ljlw3
-    link_comenzi = "https://i.epvpimg.com/GEgqcab.png"
 
     if user is not None:
         # Comandă simplă

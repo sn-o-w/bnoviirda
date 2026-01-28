@@ -66,7 +66,7 @@ def grinch(self, user, sub):
 
                 # Dacă nu s-au furat puncte
                 if nr_puncte_furate == 0:
-                    message = str(user) + ", din păcate " + str(pleb) + " s-a apărat și nu ai reușit să-i furi Vons Sadge"
+                    message = str(user) + ", din păcate, " + str(pleb) + " s-a apărat și nu ai reușit să-i furi Vons Sadge"
 
                 # S-au furat puncte
                 else:

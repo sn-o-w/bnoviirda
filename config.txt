@@ -1,6 +1,6 @@
-OWNER=
-BOT_USERNAME=
-BOT_CLIENT_ID=
-BOT_CLIENT_SECRET=
-BOT_OATH_TOKEN=
-BOT_AUTH_CODE=
+BOT_ACCESS_TOKEN="qa4r51ogloy1t1jrr541xn122aysff"
+BOT_CLIENT_ID="gp762nuuoqcoxypju8c569th9wz7q5"
+BOT_CLIENT_SECRET="teoibum0rnyz5wcujcvj0qpr1lne1x"
+BOT_REFRESH_TOKEN="c6rpf0djrb9w1hh3by4z66u5qwk4sd4ne2u0osuzouc197252g"
+BOT_USERNAME="Testingvonb"
+OWNER="adriivonb"

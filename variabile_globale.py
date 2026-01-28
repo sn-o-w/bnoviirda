@@ -1,25 +1,6 @@
 # Imports
 import os
 from time import time
-from dotenv import load_dotenv
-
-load_dotenv()
-
-def get_env_variable(env_var_name):
-    value = os.environ.get(env_var_name)
-
-    if not value:
-        print(f'Nicio variabilă definită în sistem sau în fișierul .env pentru {env_var_name}, se verifică config.txt.')
-        try:
-            with open("config.txt", "r") as config_file:
-                for line in config_file:
-                    if line.startswith(f"{env_var_name}="):
-                        value = line.strip().split("=")[1].strip('"\n')
-                        break
-        except FileNotFoundError:
-            print(f'Avertisment: {env_var_name} nu a fost găsit în config.txt.')
-
-    return value
 
 # Variabile globale
 def initialize():
@@ -171,7 +152,7 @@ def initialize():
     # Variabila pentru întrebări
     # Indică întrebările posibile
     global intrebari
-    intrebari = ["facultate", "inaltime", "ani", "inceput", "zodie"]
+    intrebari = ["facultate", "inaltime", "ani", "inceput", "zodie", "job"]
 
 
     # Variabila pentru Vons
@@ -223,7 +204,7 @@ def initialize():
     # Variabile pentru proprietarul canalului și al botului
     # Indică username-ul streamerului
     global owner
-    owner = get_env_variable('OWNER')
+    owner = os.environ["OWNER"]
     owner = owner.lower()
 
     # Indică ID-ul streamerului
@@ -232,29 +213,25 @@ def initialize():
 
     # Indică username-ul botului
     global bot_username
-    bot_username = get_env_variable('BOT_USERNAME')
+    bot_username = os.environ["BOT_USERNAME"]
     bot_username = bot_username.lower()
 
     # Indică ID-ul botului
     global bot_id
     bot_id = None
 
-    # Indică tokenul OATH al botului
-    global bot_token
-    bot_token = get_env_variable('BOT_OATH_TOKEN')
-
-    # Indică tokenul de user access pentru bot
+    # Indică valoarea botului pentru access token
     global bot_access_token
-    bot_access_token = None
+    bot_access_token = os.environ["BOT_ACCESS_TOKEN"]
+    
+    # Indică valoarea botului pentru refresh token
+    global bot_refresh_token
+    bot_refresh_token = os.environ["BOT_REFRESH_TOKEN"]
 
     # Indică valoarea botului pentru client ID
     global bot_client_id
-    bot_client_id = get_env_variable('BOT_CLIENT_ID')
+    bot_client_id = os.environ["BOT_CLIENT_ID"]
 
     # Indică valoarea botului pentru client secret
     global bot_client_secret
-    bot_client_secret = get_env_variable('BOT_CLIENT_SECRET')
-
-    # Indică valoarea botului pentru authorization code
-    global bot_authorization_code
-    bot_authorization_code = get_env_variable('BOT_AUTH_CODE')
+    bot_client_secret = os.environ["BOT_CLIENT_SECRET"]
